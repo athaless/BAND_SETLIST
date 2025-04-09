@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>OUTLIERS Setlist Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🎸 OUTLIERS Setlist Generator</h1>
+
+  <section>
+    <h2>➕ Adicionar música</h2>
+    <input id="titulo" placeholder="Título" />
+    <input id="autor" placeholder="Autor" />
+    <input id="tempo" placeholder="Tempo (ex: 3.5 ou 3:30)" />
+    <button onclick="adicionarMusica()">Adicionar</button>
+    <p id="msg-add"></p>
+  </section>
+
+  <section>
+    <h2>🎶 Gerar setlist</h2>
+    <label><input type="radio" name="modo" value="tempo" checked> Por tempo</label>
+    <label><input type="radio" name="modo" value="fixo"> 20 músicas aleatórias</label><br />
+    <input id="tempo-ensaio" type="number" value="60" /> minutos
+    <button onclick="gerarSetlist()">Gerar</button>
+    <pre id="setlist"></pre>
+  </section>
+
+  <section>
+    <h2>📚 Repertório</h2>
+    <button onclick="mostrarRepertorio()">Mostrar</button>
+    <button onclick="baixarCSV()">📥 Baixar CSV</button>
+    <input type="file" id="csv-file" onchange="importarCSV(event)" />
+    <pre id="repertorio"></pre>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
