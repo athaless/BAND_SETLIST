@@ -199,8 +199,9 @@ def buscar_musicas(criterio, valor):
       resultados.append(musica)
     elif criterio == "autor" and valor.lower() in musica['autor'].lower():
       resultados.append(musica)
-    
+  
   if resultados:
+    resultados.sort(key=lambda x: x['titulo'])  
     linhas = ["Resultados da busca:"]
     for i, musica in enumerate(resultados):
         linha = f"{i+1}. {musica['titulo']} - {musica['autor']} ({round(musica['tempo_min'], 2)} min)"
@@ -235,12 +236,12 @@ with gr.Blocks() as demo:
         botao_rep.click(fn=mostrar_repertorio, inputs=[], outputs=saida_rep)
 
     with gr.Tab("🔎"):
-      criterio_busca = gr.Dropdown(["titulo", "autor"], label="Critério de Busca")
-      valor_busca = gr.Textbox(label="Valor da Busca")
-      botao_buscar = gr.Button("Buscar Músicas")
-      saida_busca = gr.Textbox(label="Resultados da Busca", lines=10)
+        criterio_busca = gr.Dropdown(["titulo", "autor"], label="Critério de Busca")
+        valor_busca = gr.Textbox(label="Valor da Busca")
+        botao_buscar = gr.Button("Buscar Músicas")
+        saida_busca = gr.Textbox(label="Resultados da Busca", lines=10)
 
-      botao_buscar.click(fn=buscar_musicas, inputs=[criterio_busca, valor_busca], outputs=saida_busca)
+        botao_buscar.click(fn=buscar_musicas, inputs=[criterio_busca, valor_busca], outputs=saida_busca)
 
     with gr.Tab("➕"):
         titulo = gr.Textbox(label="Título")
